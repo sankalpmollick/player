@@ -1,0 +1,479 @@
+/* =========================================
+   1. GLOBAL STYLES & RESET
+========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* =========================================
+   2. HEADER & LOGO
+========================================= */
+.logo-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 25px;
+    text-decoration: none;
+}
+
+h1 img {
+    max-width: 100%;
+    height: auto;
+    max-height: 120px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* =========================================
+   3. MENU ICONS (LEFT & RIGHT)
+========================================= */
+#category-icon, #menu-icon {
+    position: fixed;
+    top: 20px;
+    z-index: 1100;
+    cursor: pointer;
+    background: #fff;
+    color: #007bff;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    font-size: 20px;
+    transition: transform 0.2s;
+}
+
+#category-icon:hover, #menu-icon:hover {
+    transform: scale(1.1);
+}
+
+#category-icon { left: 20px; }
+#menu-icon { right: 20px; }
+
+/* =========================================
+   4. SIDEBARS (CATEGORIES & MAIN MENU)
+========================================= */
+.sidebar-left, .sidebar-right {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    background-color: #222;
+    width: 0;
+    overflow-x: hidden;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1099;
+    padding-top: 80px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.sidebar-left { left: 0; }
+.sidebar-right { right: 0; }
+
+.sidebar-left.sidebar-open, .sidebar-right.sidebar-open {
+    width: 280px;
+}
+
+.sidebar-header {
+    padding: 0 25px;
+    color: #fff;
+    border-bottom: 1px solid #444;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.sidebar-header h3 {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 25px;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: #007bff;
+    color: white;
+    padding-left: 30px;
+}
+
+/* =========================================
+   5. SEARCH BAR
+========================================= */
+.search-container {
+    max-width: 640px;
+    margin: 0 auto 30px;
+    position: relative;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 14px 20px 14px 45px;
+    font-size: 1rem;
+    border-radius: 30px;
+    border: 2px solid #e0e0e0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+#searchInput:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.15);
+}
+
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+/* =========================================
+   6. PLAYER CONTAINER & CONTROLS
+========================================= */
+.player-container {
+    max-width: 640px;
+    margin: 0 auto 30px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+#audio-title {
+    font-size: 1.3rem;
+    color: #222;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    background: #f0f4f8;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #007bff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.progress-bar-container {
+    flex: 1;
+    min-width: 150px;
+    background: #e5e5e5;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#progress-bar {
+    background: #007bff;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.time-display {
+    font-size: 0.9rem;
+    color: #555;
+    font-family: monospace;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-share {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.social-btn {
+    font-size: 1.2rem;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.whatsapp-btn:hover { color: #25D366; }
+.facebook-btn:hover { color: #1877F2; }
+.twitter-btn:hover { color: #1DA1F2; }
+
+/* =========================================
+   7. AUDIO LIST GRID & CARDS
+========================================= */
+.audio-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.audio-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.audio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.audio-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.audio-card p {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.audio-card small {
+    color: #888;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.play-btn {
+    margin-top: auto;
+    padding: 8px 15px;
+    border: none;
+    background: #007bff;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.play-btn:hover {
+    background: #0056b3;
+}
+
+/* =========================================
+   8. PAGINATION
+========================================= */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pagination-btn {
+    text-decoration: none;
+    color: #007bff;
+    padding: 8px 16px;
+    border: 1px solid #007bff;
+    border-radius: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.pagination-btn:hover, .pagination-btn.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination-btn.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    background-color: #f4f7f6;
+    border-color: #ddd;
+    color: #999;
+}
+
+/* =========================================
+   9. STATIC PAGES (About, Privacy, Terms)
+========================================= */
+.static-page-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+.static-page-logo {
+    max-height: 60px;
+    width: auto;
+    display: block;
+    margin: 0 auto 30px;
+}
+
+.static-content h2 { text-align: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 25px; }
+.static-content h3 { margin-top: 30px; color: #333; margin-bottom: 10px;}
+.static-content p, .static-content li { color: #555; line-height: 1.8; margin-bottom: 15px;}
+.static-content ul { padding-left: 20px; margin-bottom: 20px;}
+.static-content a { color: #007bff; font-weight: 600; text-decoration: none; }
+.static-content a:hover { text-decoration: underline; }
+
+.page-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.back-link {
+    text-decoration: none;
+    font-weight: 600;
+    color: #007bff;
+    font-size: 15px;
+}
+
+/* =========================================
+   10. MEDIA QUERIES (MOBILE FIXES - ULTRA COMPACT PLAYER)
+========================================= */
+@media (max-width: 768px) {
+    /* Sidebars ki width */
+    .sidebar-left.sidebar-open, .sidebar-right.sidebar-open { width: 75vw; }
+    
+    /* Menu aur Category icons ko logo se overlap hone se rokna */
+    .logo-link { margin-top: 65px; }
+    h1 img { max-height: 70px; }
+    
+    /* =========================================
+       ULTRA COMPACT MOBILE PLAYER (3 LINES)
+    ========================================= */
+    .player-container { 
+        padding: 12px 15px; /* Upar-niche ki padding (jagah) aur kam ki */
+        margin-bottom: 15px;
+    }
+
+    #audio-title {
+        font-size: 1.1rem; /* Text size halka sa chota kiya */
+        margin-bottom: 8px; /* Title aur Play button ke beech ki jagah ghata di */
+    }
+
+    .controls { 
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    /* --- LINE 2: Play Button + Progress Bar + Time --- */
+    #play-pause-btn {
+        order: 1;
+        width: 34px; height: 34px; font-size: 0.95rem; margin: 0;
+    }
+
+    .progress-bar-container { 
+        order: 2;
+        flex: 1; 
+        margin: 0 10px !important; 
+        height: 5px; /* Progress bar aur patla kiya */
+        min-width: 100px;
+    }
+
+    .time-display {
+        order: 3;
+        width: auto;
+        margin: 0;
+        font-size: 0.75rem;
+    }
+
+    /* --- LINE 3: Action Buttons + Social Share --- */
+    .action-buttons { 
+        order: 4;
+        flex: 1; 
+        justify-content: flex-end; 
+        margin-top: 8px; /* Line 2 aur Line 3 ke beech ki jagah kam ki */
+        margin-bottom: 0;
+        padding-right: 12px;
+    }
+
+    .social-share {
+        order: 5;
+        flex: 1; 
+        justify-content: flex-start; 
+        margin-top: 8px; /* Line 2 aur Line 3 ke beech ki jagah kam ki */
+        padding-top: 0;
+        border-top: none; 
+        border-left: 1px solid #eaeaea; 
+        padding-left: 12px;
+        width: auto;
+    }
+    
+    /* Share aur Download buttons thode aur chote kiye */
+    .control-btn {
+        width: 32px; height: 32px; font-size: 0.9rem;
+    }
+    .social-btn {
+        font-size: 1.1rem;
+    }
+}
