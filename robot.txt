@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://play.thetrue.in/sitemap.php
